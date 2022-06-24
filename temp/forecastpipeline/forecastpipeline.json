@@ -1,0 +1,1484 @@
+{
+  "pipelineSpec": {
+    "components": {
+      "comp-for-loop-2": {
+        "dag": {
+          "outputs": {
+            "artifacts": {
+              "forecast-metrics-2-metrics": {
+                "artifactSelectors": [
+                  {
+                    "outputArtifactKey": "metrics",
+                    "producerSubtask": "forecast-metrics-2"
+                  }
+                ]
+              }
+            }
+          },
+          "tasks": {
+            "forecast-metrics-2": {
+              "cachingOptions": {},
+              "componentRef": {
+                "name": "comp-forecast-metrics-2"
+              },
+              "dependentTasks": [
+                "forecast-prophet"
+              ],
+              "inputs": {
+                "parameters": {
+                  "bq_input": {
+                    "componentInputParameter": "pipelineparam--forecast-prep-bq_input"
+                  },
+                  "bq_test": {
+                    "componentInputParameter": "pipelineparam--forecast-prep-bq_test"
+                  },
+                  "cov_attribute": {
+                    "componentInputParameter": "pipelineparam--cov_attribute"
+                  },
+                  "cov_available": {
+                    "componentInputParameter": "pipelineparam--cov_available"
+                  },
+                  "cov_unavailable": {
+                    "componentInputParameter": "pipelineparam--cov_unavailable"
+                  },
+                  "method": {
+                    "taskOutputParameter": {
+                      "outputParameterKey": "method",
+                      "producerTask": "forecast-prophet"
+                    }
+                  },
+                  "platform": {
+                    "taskOutputParameter": {
+                      "outputParameterKey": "platform",
+                      "producerTask": "forecast-prophet"
+                    }
+                  },
+                  "project": {
+                    "componentInputParameter": "pipelineparam--project"
+                  },
+                  "scenario": {
+                    "taskOutputParameter": {
+                      "outputParameterKey": "scenario",
+                      "producerTask": "forecast-prophet"
+                    }
+                  },
+                  "series_column": {
+                    "componentInputParameter": "pipelineparam--series_column"
+                  },
+                  "target_column": {
+                    "componentInputParameter": "pipelineparam--target_column"
+                  },
+                  "time_column": {
+                    "componentInputParameter": "pipelineparam--time_column"
+                  }
+                }
+              },
+              "taskInfo": {
+                "name": "forecast-metrics-2"
+              }
+            },
+            "forecast-prophet": {
+              "cachingOptions": {},
+              "componentRef": {
+                "name": "comp-forecast-prophet"
+              },
+              "inputs": {
+                "parameters": {
+                  "bq_horizon": {
+                    "componentInputParameter": "pipelineparam--forecast-prep-bq_horizon"
+                  },
+                  "bq_input": {
+                    "componentInputParameter": "pipelineparam--forecast-prep-bq_input"
+                  },
+                  "bq_test": {
+                    "componentInputParameter": "pipelineparam--forecast-prep-bq_test"
+                  },
+                  "cov_attribute": {
+                    "componentInputParameter": "pipelineparam--cov_attribute"
+                  },
+                  "cov_available": {
+                    "componentInputParameter": "pipelineparam--cov_available"
+                  },
+                  "cov_unavailable": {
+                    "componentInputParameter": "pipelineparam--cov_unavailable"
+                  },
+                  "forecast_horizon_length": {
+                    "componentInputParameter": "pipelineparam--forecast_horizon_length"
+                  },
+                  "forecast_test_length": {
+                    "componentInputParameter": "pipelineparam--forecast_test_length"
+                  },
+                  "image_uri": {
+                    "componentInputParameter": "pipelineparam--image_uri"
+                  },
+                  "notebook": {
+                    "componentInputParameter": "pipelineparam--notebook"
+                  },
+                  "project": {
+                    "componentInputParameter": "pipelineparam--project"
+                  },
+                  "region": {
+                    "componentInputParameter": "pipelineparam--region"
+                  },
+                  "series_column": {
+                    "componentInputParameter": "pipelineparam--series_column"
+                  },
+                  "service_account": {
+                    "componentInputParameter": "pipelineparam--service_account"
+                  },
+                  "target_column": {
+                    "componentInputParameter": "pipelineparam--target_column"
+                  },
+                  "time_column": {
+                    "componentInputParameter": "pipelineparam--time_column"
+                  },
+                  "yearly": {
+                    "componentInputParameter": "pipelineparam--loop-item-param-1"
+                  }
+                }
+              },
+              "taskInfo": {
+                "name": "forecast-prophet"
+              }
+            }
+          }
+        },
+        "inputDefinitions": {
+          "parameters": {
+            "pipelineparam--cov_attribute": {
+              "type": "STRING"
+            },
+            "pipelineparam--cov_available": {
+              "type": "STRING"
+            },
+            "pipelineparam--cov_unavailable": {
+              "type": "STRING"
+            },
+            "pipelineparam--forecast-prep-bq_horizon": {
+              "type": "STRING"
+            },
+            "pipelineparam--forecast-prep-bq_input": {
+              "type": "STRING"
+            },
+            "pipelineparam--forecast-prep-bq_test": {
+              "type": "STRING"
+            },
+            "pipelineparam--forecast_horizon_length": {
+              "type": "INT"
+            },
+            "pipelineparam--forecast_test_length": {
+              "type": "INT"
+            },
+            "pipelineparam--image_uri": {
+              "type": "STRING"
+            },
+            "pipelineparam--loop-item-param-1": {
+              "type": "STRING"
+            },
+            "pipelineparam--notebook": {
+              "type": "STRING"
+            },
+            "pipelineparam--project": {
+              "type": "STRING"
+            },
+            "pipelineparam--region": {
+              "type": "STRING"
+            },
+            "pipelineparam--series_column": {
+              "type": "STRING"
+            },
+            "pipelineparam--service_account": {
+              "type": "STRING"
+            },
+            "pipelineparam--target_column": {
+              "type": "STRING"
+            },
+            "pipelineparam--time_column": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "forecast-metrics-2-metrics": {
+              "artifactType": {
+                "schemaTitle": "system.Metrics",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          }
+        }
+      },
+      "comp-forecast-bqarima": {
+        "executorLabel": "exec-forecast-bqarima",
+        "inputDefinitions": {
+          "parameters": {
+            "bq_horizon": {
+              "type": "STRING"
+            },
+            "bq_input": {
+              "type": "STRING"
+            },
+            "bq_test": {
+              "type": "STRING"
+            },
+            "forecast_horizon_length": {
+              "type": "INT"
+            },
+            "forecast_test_length": {
+              "type": "INT"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "series_column": {
+              "type": "STRING"
+            },
+            "target_column": {
+              "type": "STRING"
+            },
+            "time_column": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "parameters": {
+            "bq_model": {
+              "type": "STRING"
+            },
+            "bq_model_query": {
+              "type": "STRING"
+            },
+            "bq_output": {
+              "type": "STRING"
+            },
+            "method": {
+              "type": "STRING"
+            },
+            "platform": {
+              "type": "STRING"
+            },
+            "scenario": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-forecast-champion-ensemble": {
+        "executorLabel": "exec-forecast-champion-ensemble",
+        "inputDefinitions": {
+          "parameters": {
+            "bq_dataset": {
+              "type": "STRING"
+            },
+            "bq_horizon": {
+              "type": "STRING"
+            },
+            "bq_input": {
+              "type": "STRING"
+            },
+            "bq_test": {
+              "type": "STRING"
+            },
+            "cov_attribute": {
+              "type": "STRING"
+            },
+            "cov_available": {
+              "type": "STRING"
+            },
+            "cov_unavailable": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "region": {
+              "type": "STRING"
+            },
+            "series_column": {
+              "type": "STRING"
+            },
+            "target_column": {
+              "type": "STRING"
+            },
+            "time_column": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "metrics": {
+              "artifactType": {
+                "schemaTitle": "system.HTML",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          },
+          "parameters": {
+            "MAE": {
+              "type": "DOUBLE"
+            },
+            "MAPE": {
+              "type": "DOUBLE"
+            },
+            "bq_champion_horizon": {
+              "type": "STRING"
+            },
+            "bq_champion_test": {
+              "type": "STRING"
+            },
+            "pMAE": {
+              "type": "DOUBLE"
+            },
+            "vizier_study": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-forecast-champion-method": {
+        "executorLabel": "exec-forecast-champion-method",
+        "inputDefinitions": {
+          "parameters": {
+            "bq_horizon": {
+              "type": "STRING"
+            },
+            "bq_input": {
+              "type": "STRING"
+            },
+            "bq_test": {
+              "type": "STRING"
+            },
+            "cov_attribute": {
+              "type": "STRING"
+            },
+            "cov_available": {
+              "type": "STRING"
+            },
+            "cov_unavailable": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "series_column": {
+              "type": "STRING"
+            },
+            "target_column": {
+              "type": "STRING"
+            },
+            "time_column": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "metrics": {
+              "artifactType": {
+                "schemaTitle": "system.Metrics",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          },
+          "parameters": {
+            "MAE": {
+              "type": "DOUBLE"
+            },
+            "MAPE": {
+              "type": "DOUBLE"
+            },
+            "bq_champion_horizon": {
+              "type": "STRING"
+            },
+            "bq_champion_test": {
+              "type": "STRING"
+            },
+            "method": {
+              "type": "STRING"
+            },
+            "pMAE": {
+              "type": "DOUBLE"
+            },
+            "platform": {
+              "type": "STRING"
+            },
+            "scenario": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-forecast-champion-method-series": {
+        "executorLabel": "exec-forecast-champion-method-series",
+        "inputDefinitions": {
+          "parameters": {
+            "bq_horizon": {
+              "type": "STRING"
+            },
+            "bq_input": {
+              "type": "STRING"
+            },
+            "bq_test": {
+              "type": "STRING"
+            },
+            "cov_attribute": {
+              "type": "STRING"
+            },
+            "cov_available": {
+              "type": "STRING"
+            },
+            "cov_unavailable": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "series_column": {
+              "type": "STRING"
+            },
+            "target_column": {
+              "type": "STRING"
+            },
+            "time_column": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "metrics": {
+              "artifactType": {
+                "schemaTitle": "system.HTML",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          },
+          "parameters": {
+            "bq_champion_horizon": {
+              "type": "STRING"
+            },
+            "bq_champion_test": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-forecast-metrics": {
+        "executorLabel": "exec-forecast-metrics",
+        "inputDefinitions": {
+          "parameters": {
+            "bq_input": {
+              "type": "STRING"
+            },
+            "bq_test": {
+              "type": "STRING"
+            },
+            "cov_attribute": {
+              "type": "STRING"
+            },
+            "cov_available": {
+              "type": "STRING"
+            },
+            "cov_unavailable": {
+              "type": "STRING"
+            },
+            "method": {
+              "type": "STRING"
+            },
+            "platform": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "scenario": {
+              "type": "STRING"
+            },
+            "series_column": {
+              "type": "STRING"
+            },
+            "target_column": {
+              "type": "STRING"
+            },
+            "time_column": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "metrics": {
+              "artifactType": {
+                "schemaTitle": "system.Metrics",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          },
+          "parameters": {
+            "MAE": {
+              "type": "DOUBLE"
+            },
+            "MAPE": {
+              "type": "DOUBLE"
+            },
+            "pMAE": {
+              "type": "DOUBLE"
+            }
+          }
+        }
+      },
+      "comp-forecast-metrics-2": {
+        "executorLabel": "exec-forecast-metrics-2",
+        "inputDefinitions": {
+          "parameters": {
+            "bq_input": {
+              "type": "STRING"
+            },
+            "bq_test": {
+              "type": "STRING"
+            },
+            "cov_attribute": {
+              "type": "STRING"
+            },
+            "cov_available": {
+              "type": "STRING"
+            },
+            "cov_unavailable": {
+              "type": "STRING"
+            },
+            "method": {
+              "type": "STRING"
+            },
+            "platform": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "scenario": {
+              "type": "STRING"
+            },
+            "series_column": {
+              "type": "STRING"
+            },
+            "target_column": {
+              "type": "STRING"
+            },
+            "time_column": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "artifacts": {
+            "metrics": {
+              "artifactType": {
+                "schemaTitle": "system.Metrics",
+                "schemaVersion": "0.0.1"
+              }
+            }
+          },
+          "parameters": {
+            "MAE": {
+              "type": "DOUBLE"
+            },
+            "MAPE": {
+              "type": "DOUBLE"
+            },
+            "pMAE": {
+              "type": "DOUBLE"
+            }
+          }
+        }
+      },
+      "comp-forecast-prep": {
+        "executorLabel": "exec-forecast-prep",
+        "inputDefinitions": {
+          "parameters": {
+            "bq_dataset": {
+              "type": "STRING"
+            },
+            "bq_source": {
+              "type": "STRING"
+            },
+            "cov_attribute": {
+              "type": "STRING"
+            },
+            "cov_available": {
+              "type": "STRING"
+            },
+            "cov_unavailable": {
+              "type": "STRING"
+            },
+            "forecast_granularity": {
+              "type": "STRING"
+            },
+            "forecast_horizon_length": {
+              "type": "INT"
+            },
+            "forecast_test_length": {
+              "type": "INT"
+            },
+            "forecast_val_length": {
+              "type": "INT"
+            },
+            "max_context_window": {
+              "type": "INT"
+            },
+            "notebook": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "region": {
+              "type": "STRING"
+            },
+            "series_column": {
+              "type": "STRING"
+            },
+            "target_column": {
+              "type": "STRING"
+            },
+            "time_column": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "parameters": {
+            "bq_horizon": {
+              "type": "STRING"
+            },
+            "bq_horizon_input": {
+              "type": "STRING"
+            },
+            "bq_input": {
+              "type": "STRING"
+            },
+            "bq_input_query": {
+              "type": "STRING"
+            },
+            "bq_test": {
+              "type": "STRING"
+            },
+            "dataset_resource_name": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "comp-forecast-prophet": {
+        "executorLabel": "exec-forecast-prophet",
+        "inputDefinitions": {
+          "parameters": {
+            "bq_horizon": {
+              "type": "STRING"
+            },
+            "bq_input": {
+              "type": "STRING"
+            },
+            "bq_test": {
+              "type": "STRING"
+            },
+            "cov_attribute": {
+              "type": "STRING"
+            },
+            "cov_available": {
+              "type": "STRING"
+            },
+            "cov_unavailable": {
+              "type": "STRING"
+            },
+            "forecast_horizon_length": {
+              "type": "INT"
+            },
+            "forecast_test_length": {
+              "type": "INT"
+            },
+            "image_uri": {
+              "type": "STRING"
+            },
+            "notebook": {
+              "type": "STRING"
+            },
+            "project": {
+              "type": "STRING"
+            },
+            "region": {
+              "type": "STRING"
+            },
+            "series_column": {
+              "type": "STRING"
+            },
+            "service_account": {
+              "type": "STRING"
+            },
+            "target_column": {
+              "type": "STRING"
+            },
+            "time_column": {
+              "type": "STRING"
+            },
+            "yearly": {
+              "type": "STRING"
+            }
+          }
+        },
+        "outputDefinitions": {
+          "parameters": {
+            "bq_output": {
+              "type": "STRING"
+            },
+            "method": {
+              "type": "STRING"
+            },
+            "model": {
+              "type": "STRING"
+            },
+            "platform": {
+              "type": "STRING"
+            },
+            "scenario": {
+              "type": "STRING"
+            }
+          }
+        }
+      }
+    },
+    "deploymentSpec": {
+      "executors": {
+        "exec-forecast-bqarima": {
+          "container": {
+            "args": [
+              "--executor_input",
+              "{{$}}",
+              "--function_to_execute",
+              "forecast_bqarima"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'pandas' 'pyarrow' 'google-cloud-bigquery' 'kfp==1.8.12' && \"$0\" \"$@\"\n",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp -d)\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\npython3 -m kfp.v2.components.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+              "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing import *\n\ndef forecast_bqarima(\n    project: str,\n    bq_input: str,\n    bq_test: str,\n    bq_horizon: str,\n    forecast_test_length: int,\n    forecast_horizon_length: int,\n    target_column: str,\n    time_column: str,\n    series_column: str,\n    #cov_unavailable: list,\n    #cov_available: list,\n    #cov_attribute: list\n) -> NamedTuple('source', [('bq_model', str), ('bq_model_query', str), ('bq_output', str), ('platform', str), ('method', str), ('scenario', str)]):\n\n    # Setup\n    from collections import namedtuple\n    sources = namedtuple('source', ['bq_model', 'bq_model_query', 'bq_output', 'platform', 'method', 'scenario'])\n\n    from google.cloud import bigquery\n    bigquery = bigquery.Client(project = project)\n\n    # parameters\n    table = bq_test.split('.')[-1]\n    bq_model = f\"{bq_test[:-(len(table)+1)]}.arimaplus\"\n    bq_output = f\"{bq_test[:-(len(table)+1)]}.fitted_forecast_arimaplus\"\n    platform = 'BigQuery' \n    method = 'ARIMA_PLUS'\n    scenario = 'automatic'\n\n    # Create Model: ARIMA_PLUS\n    # data_frequency should be ok as default = auto_frequency\n    queryARIMA = f\"\"\"\n        CREATE OR REPLACE MODEL `{bq_model}`\n        OPTIONS\n          (model_type = 'ARIMA_PLUS',\n           time_series_timestamp_col = '{time_column}',\n           time_series_data_col = '{target_column}',\n           time_series_id_col = '{series_column}',\n           auto_arima_max_order = 5,\n           holiday_region = 'US',\n           horizon = {forecast_test_length}+{forecast_horizon_length}\n          ) AS\n        SELECT {series_column}, {time_column}, {target_column}\n        FROM `{bq_input}`\n        WHERE splits in ('TRAIN','VALIDATE')\n    \"\"\"\n    job = bigquery.query(query = queryARIMA)\n    job.result()\n\n    # Create Raw Output\n    query = f\"\"\"\n        CREATE OR REPLACE TABLE `{bq_output}` AS\n        WITH\n            FORECAST AS (\n                SELECT\n                    {series_column}, \n                    EXTRACT(DATE from time_series_timestamp) as {time_column},\n                    time_series_adjusted_data as yhat,\n                    prediction_interval_lower_bound as yhat_lower,\n                    prediction_interval_upper_bound as yhat_upper\n                FROM ML.EXPLAIN_FORECAST(MODEL `{bq_model}`, STRUCT({forecast_test_length+forecast_horizon_length} AS horizon, 0.95 AS confidence_level))\n                WHERE time_series_type = 'forecast'\n            ),\n            ACTUAL AS (\n                SELECT {series_column}, {time_column}, {target_column}, splits\n                FROM `{bq_input}`\n                WHERE splits = 'TEST'\n            )\n        SELECT {series_column}, {time_column}, {target_column}, yhat, yhat_lower, yhat_upper, splits\n        FROM FORECAST\n        LEFT OUTER JOIN ACTUAL\n        USING ({series_column}, {time_column})\n        ORDER BY {series_column}, {time_column} \n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # Insert Output for Tournament (first remove prior run if present)\n    query = f\"\"\"\n        DELETE `{bq_test}`\n        WHERE platform = '{platform}' and method = '{method}' and scenario = '{scenario}'\n    \"\"\"\n    job = bigquery.query(query)\n    job.result()\n\n    query = f\"\"\"\n        INSERT INTO `{bq_test}`\n        SELECT\n            '{platform}' as platform,\n            '{method}' as method,\n            '{scenario}' as scenario,\n            {series_column},\n            {time_column},\n            {target_column},\n            yhat,\n            yhat_lower,\n            yhat_upper\n        FROM `{bq_output}`\n        WHERE splits = 'TEST'\n        ORDER by {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # Insert forecast for future horizon\n    query = f\"\"\"\n        DELETE `{bq_horizon}`\n        WHERE platform = '{platform}' and method = '{method}' and scenario = '{scenario}'\n    \"\"\"\n    job = bigquery.query(query)\n    job.result()\n\n    query = f\"\"\"\n        INSERT INTO `{bq_horizon}`\n        SELECT\n            '{platform}' as platform,\n            '{method}' as method,\n            '{scenario}' as scenario,\n            {series_column},\n            {time_column},\n            {target_column},\n            yhat,\n            yhat_lower,\n            yhat_upper\n        FROM `{bq_output}`\n        WHERE splits is NULL\n        ORDER by {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    return sources(bq_model, queryARIMA, bq_output, platform, method, scenario)\n\n"
+            ],
+            "image": "python:3.9"
+          }
+        },
+        "exec-forecast-champion-ensemble": {
+          "container": {
+            "args": [
+              "--executor_input",
+              "{{$}}",
+              "--function_to_execute",
+              "forecast_champion_ensemble"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'pandas' 'db-dtypes' 'google-cloud-bigquery' 'google-cloud-aiplatform' 'pretty_html_table' 'kfp==1.8.12' && \"$0\" \"$@\"\n",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp -d)\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\npython3 -m kfp.v2.components.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+              "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing import *\n\ndef forecast_champion_ensemble(\n    project: str,\n    region: str,\n    bq_dataset: str,\n    bq_input: str,\n    bq_test: str,\n    bq_horizon: str,\n    target_column: str,\n    time_column: str,\n    series_column: str,\n    cov_unavailable: list,\n    cov_available: list,\n    cov_attribute: list,\n    metrics: dsl.Output[dsl.HTML]\n) -> NamedTuple('sources', [('bq_champion_test', str), ('bq_champion_horizon', str), ('vizier_study', str), ('MAPE', float), ('MAE', float), ('pMAE', float)]):\n\n    # Setup\n    from collections import namedtuple\n    sources = namedtuple('sources', ['bq_champion_test', 'bq_champion_horizon', 'vizier_study', 'MAPE', 'MAE', 'pMAE'])\n\n    from pretty_html_table import build_table\n    import pandas as pd\n\n    from google.cloud import bigquery\n    bigquery = bigquery.Client(project = project)\n\n    from google.cloud import aiplatform\n    aiplatform.init(project=project, location=region)\n    vizier = aiplatform.gapic.VizierServiceClient(client_options = {\"api_endpoint\" : f\"{region}-aiplatform.googleapis.com\"})\n    parent = f\"projects/{project}/locations/{region}\"\n\n    # get a list of method tried - initialize the weighting equally\n    methods = bigquery.query(query = f\"SELECT DISTINCT platform, method, scenario FROM {bq_test} ORDER BY platform, method, scenario\").to_dataframe()\n    methods['weight'] = 1/methods.shape[0]\n    methods = methods.to_dict('index')\n\n    # define a function that will return the metrics for set of weights\n    def weighted_metrics(methods):\n        method_query = \"\"\n        for key in methods:\n            if key > 0: method_query += \"\\nUNION ALL \"\n            method_query += f\"SELECT '{methods[key]['platform']}' AS platform, '{methods[key]['method']}' as method, '{methods[key]['scenario']}' as scenario, {methods[key]['weight']} as weight\"\n\n        query = f\"\"\"\n        WITH\n            WEIGHTS AS (\n                {method_query}\n            ),\n            FORECASTS AS (\n                SELECT\n                    platform, method, scenario,\n                    {time_column}, {series_column}, {target_column},\n                    yhat\n                FROM `{bq_test}`\n            ),\n            SOURCE AS (\n                SELECT {series_column}, {time_column}\n                FROM `{bq_input}`\n                WHERE ROW_SOURCE = 'actual'\n            ),\n            ACTUALS AS (\n                SELECT *\n                FROM FORECASTS A\n                INNER JOIN SOURCE B\n                USING ({series_column}, {time_column})\n            ),\n            WEIGHTED_FORECAST AS (\n                SELECT {series_column}, {time_column}, max({target_column}) as {target_column}, sum(weight*yhat) as w_yhat\n                FROM ACTUALS\n                LEFT OUTER JOIN WEIGHTS\n                USING (platform, method, scenario)\n                GROUP BY {series_column}, {time_column}\n            )\n        SELECT\n            AVG(ABS({target_column}-w_yhat)/{target_column}) as MAPE,\n            AVG(ABS({target_column}-w_yhat)) as MAE,\n            SUM(ABS({target_column}-w_yhat))/SUM({target_column}) as pMAE\n        FROM WEIGHTED_FORECAST\n        \"\"\"\n        wmetrics = bigquery.query(query = query).to_dataframe()\n        wmetrics = wmetrics.to_dict('records')[0]\n        response = []\n        for key in wmetrics:\n            response.append({\"metric_id\": key, \"value\": wmetrics[key]})\n        return response    \n\n    # check to see if Vizier Study for this component already exist and delete\n    studies = vizier.list_studies(parent = parent)\n    for s in studies:\n        if s.display_name == f'vizier_{bq_dataset}_champion_ensemble': \n            vizier.delete_study(name = s.name)\n\n    # setup a Vizier Study\n    study = {\n        'display_name': f'vizier_{bq_dataset}_champion_ensemble',\n        'study_spec': {\n            'algorithm': \"ALGORITHM_UNSPECIFIED\",\n            'metrics': [],\n            'parameters': []\n        }\n    }\n\n    for metric in ['MAE','MAPE','pMAE']:\n        study['study_spec']['metrics'].append({'metric_id': metric, 'goal': \"MINIMIZE\"})\n\n    for key in methods:\n        study['study_spec']['parameters'].append({'parameter_id': f\"method_{key}\", 'double_value_spec': {'min_value': 0, 'max_value': 1}})\n\n    # need a stopping rule? or just limit number of trials at initial phase    \n    study = vizier.create_study(parent = parent, study = study)\n\n    # function to orchestrate single thread of trials for the Vizier Study\n    def trial_runner(max_trials):\n        trial_id = 0\n        while int(trial_id) < max_trials:\n            suggestions = vizier.suggest_trials(\n                {\n                    \"parent\": study.name,\n                    \"suggestion_count\" : 1,\n                    \"client_id\" : \"client1\"\n                }\n            )\n\n            for suggestion in suggestions.result().trials:\n                trial_id = suggestion.name.split(\"/\")[-1]\n                trial = vizier.get_trial({\"name\" : suggestion.name})\n\n                if trial.state in [\"COMPLETED\", \"INFEASIBLE\"]:\n                    continue\n\n                # update weights in methods\n                sum_weights = 0\n                for param in trial.parameters:\n                    sum_weights += param.value\n                for param in trial.parameters:\n                    key = param.parameter_id.split('_')[-1]\n                    methods[int(key)]['weight'] = param.value / sum_weights\n\n                vizier.add_trial_measurement(\n                    {\n                        \"trial_name\": suggestion.name,\n                        \"measurement\": {\n                            \"metrics\": weighted_metrics(methods)\n                        }               \n                    }\n                )\n\n                response = vizier.complete_trial(\n                    {\n                        \"name\" : suggestion.name,\n                        \"trial_infeasible\": False\n                    }\n                )    \n\n    # run trials:\n    trial_runner(25)\n\n    # retrieve optimal trial from study:\n    optimal_trial = vizier.list_optimal_trials({\"parent\": study.name}).optimal_trials[-1]\n    sum_weights = 0\n    for p in optimal_trial.parameters:\n        #print(p.parameter_id, p.value)\n        sum_weights += p.value\n    for p in optimal_trial.parameters:\n        key = p.parameter_id.split('_')[-1]\n        methods[int(key)]['weight'] = p.value / sum_weights    \n    # prepare metrics from optimal trial\n    wmetrics = {}\n    for m in optimal_trial.final_measurement.metrics:\n        print(m.metric_id, m.value)\n        wmetrics[m.metric_id] = m.value\n\n\n    # create output tables\n    # parameter\n    table = bq_test.split('.')[-1]    \n    bq_champion = f\"{bq_test[:-(len(table)+1)]}.champion_ensemble\"\n    bq_champion_test = bq_champion + \"_test\"\n    bq_champion_horizon = bq_champion + \"_horizon\"    \n\n    # create temporary table spec for queries to use the method weights\n    method_query = \"\"\n    for key in methods:\n        if key > 0: method_query += \"\\nUNION ALL \"\n        method_query += f\"SELECT '{methods[key]['platform']}' AS platform, '{methods[key]['method']}' as method, '{methods[key]['scenario']}' as scenario, {methods[key]['weight']} as weight\"\n\n    # create champion_method_test tables in same dataset\n    query = f\"\"\"\n    CREATE OR REPLACE TABLE `{bq_champion_test}` AS\n    WITH\n        WEIGHTS AS (\n            {method_query}\n        ),\n        FORECASTS AS (\n            SELECT *\n            FROM `{bq_test}`\n        ),\n        WEIGHTED_FORECASTS AS (\n            SELECT * EXCEPT(yhat), weight*yhat as yhat\n            FROM FORECASTS\n            LEFT OUTER JOIN WEIGHTS\n            USING (platform, method, scenario)\n        ),\n        ENSEMBLE AS (\n            SELECT\n                {series_column}, {time_column},\n                max({target_column}) as {target_column},\n                sum(yhat) as yhat\n            FROM WEIGHTED_FORECASTS\n            GROUP BY {series_column}, {time_column}\n        )\n    SELECT \n        'Ensemble' as platform,\n        'Ensemble' as method,\n        'Ensemble' as scenario,\n        {series_column}, {time_column}, {target_column},\n        yhat, null as yhat_lower, null as yhat_upper\n    FROM ENSEMBLE\n    ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # create champion_method_horizon tables in same dataset    \n    query = f\"\"\"\n    CREATE OR REPLACE TABLE `{bq_champion_horizon}` AS\n    WITH\n        WEIGHTS AS (\n            {method_query}\n        ),\n        FORECASTS AS (\n            SELECT *\n            FROM `{bq_horizon}`\n        ),\n        WEIGHTED_FORECASTS AS (\n            SELECT * EXCEPT(yhat), weight*yhat as yhat\n            FROM FORECASTS\n            LEFT OUTER JOIN WEIGHTS\n            USING (platform, method, scenario)\n        ),\n        ENSEMBLE AS (\n            SELECT\n                {series_column}, {time_column},\n                max({target_column}) as {target_column},\n                sum(yhat) as yhat\n            FROM WEIGHTED_FORECASTS\n            GROUP BY {series_column}, {time_column}\n        )\n    SELECT \n        'Ensemble' as platform,\n        'Ensemble' as method,\n        'Ensemble' as scenario,\n        {series_column}, {time_column}, {target_column},\n        yhat, null as yhat_lower, null as yhat_upper\n    FROM ENSEMBLE\n    ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()        \n\n    # create champion_* table in the same dataset - combine the input+test+horizon for reporting\n    # combine the input data (.forecast_input_pipeline) with the test data fitted (.champion_series|overall_test) and the future horizon (.champion_sereis|overall_horizon)\n    query = f\"\"\"\n    CREATE OR REPLACE TABLE `{bq_champion}` AS\n    WITH\n        RAW_AND_TEST AS (\n            SELECT * FROM `{bq_input}`\n            LEFT OUTER JOIN `{bq_champion_test}`\n            USING ({series_column}, {time_column}, {target_column})\n        ),\n        HORIZON AS (\n            SELECT 'HORIZON' AS splits, * EXCEPT({target_column}) FROM `{bq_champion_horizon}`\n        ),\n        HORIZON_NEW AS (\n            SELECT * FROM HORIZON \n            LEFT OUTER JOIN `{bq_horizon}_input`\n            USING ({series_column}, {time_column})\n        ),\n        RTH AS (\n            SELECT splits,\n                {','.join([series_column, time_column, target_column]+cov_unavailable+cov_available+cov_attribute)},\n                platform, method, scenario,\n                yhat, yhat_lower, yhat_upper\n            FROM RAW_AND_TEST\n            UNION ALL\n            SELECT splits,\n                {','.join([series_column, time_column, target_column]+cov_unavailable+cov_available+cov_attribute)},\n                platform, method, scenario,\n                yhat, yhat_lower, yhat_upper\n            FROM HORIZON_NEW\n        )\n    SELECT *\n    FROM RTH\n    ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()    \n\n    # log metric artifcacts as html\n    temp = pd.DataFrame.from_dict(methods, orient='index')\n    with open(metrics.path, 'w') as f:\n        f.write(build_table(temp, 'blue_light'))\n\n    return sources(bq_champion_test, bq_champion_horizon, study.display_name, wmetrics['MAPE'], wmetrics['MAE'], wmetrics['pMAE'])\n\n"
+            ],
+            "image": "python:3.9"
+          }
+        },
+        "exec-forecast-champion-method": {
+          "container": {
+            "args": [
+              "--executor_input",
+              "{{$}}",
+              "--function_to_execute",
+              "forecast_champion_method"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'pandas' 'db-dtypes' 'google-cloud-bigquery' 'kfp==1.8.12' && \"$0\" \"$@\"\n",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp -d)\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\npython3 -m kfp.v2.components.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+              "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing import *\n\ndef forecast_champion_method(\n    project: str,\n    bq_input: str,\n    bq_test: str,\n    bq_horizon: str,\n    target_column: str,\n    time_column: str,\n    series_column: str,\n    cov_unavailable: list,\n    cov_available: list,\n    cov_attribute: list,\n    metrics: dsl.Output[dsl.Metrics]\n) -> NamedTuple('metrics', [('bq_champion_test', str), ('bq_champion_horizon', str), ('platform', str), ('method', str), ('scenario', str), ('MAPE', float), ('MAE', float), ('pMAE', float)]):\n\n    # Setup\n    from collections import namedtuple\n    sources = namedtuple('metrics', ['bq_champion_test', 'bq_champion_horizon', 'platform', 'method','scenario', 'MAPE', 'MAE', 'pMAE'])\n\n    from google.cloud import bigquery\n    bigquery = bigquery.Client(project = project)\n\n    # parameter\n    table = bq_test.split('.')[-1]    \n    bq_champion = f\"{bq_test[:-(len(table)+1)]}.champion_overall\"\n    bq_champion_test = bq_champion + \"_test\"\n    bq_champion_horizon = bq_champion + \"_horizon\"\n\n    # metrics\n    query = f\"\"\"\n        WITH\n            FORECASTS AS (\n                SELECT\n                    platform, method, scenario,\n                    {time_column}, \n                    {target_column},\n                    {series_column}, \n                    yhat,\n                    ({target_column} - yhat) as diff\n                FROM `{bq_test}`\n            ),\n            SOURCE AS (\n                SELECT {series_column}, {time_column}\n                FROM `{bq_input}`\n                WHERE ROW_SOURCE = 'actual'\n            ),\n            ACTUALS AS (\n                SELECT *\n                FROM FORECASTS A\n                INNER JOIN SOURCE B\n                USING ({series_column}, {time_column})\n            )\n        SELECT\n            platform, method, scenario,\n            AVG(ABS(diff)/{target_column}) as MAPE,\n            AVG(ABS(diff)) as MAE,\n            SUM(ABS(diff))/SUM({target_column}) as pMAE\n        FROM ACTUALS\n        GROUP BY platform, method, scenario\n    \"\"\"\n    customMetrics = bigquery.query(query = query).to_dataframe()\n\n    # pick champion\n    # must be best (MAE and pMAE), else best (MAPE and pMAE), else best pMAE\n    customMetrics['MAE_RANK'] = customMetrics['MAE'].rank(method='min')\n    customMetrics['pMAE_RANK'] = customMetrics['pMAE'].rank(method='min')\n    customMetrics['MAPE_RANK'] = customMetrics['MAPE'].rank(method='min')\n\n    customMetrics['champion'] = 0\n    customMetrics.loc[(customMetrics['MAE_RANK'] == 1) & (customMetrics['pMAE_RANK'] == 1), 'champion'] = 1\n\n    if customMetrics['champion'].sum() != 1:\n        customMetrics['champion'] = 0\n        customMetrics.loc[(customMetrics['MAPE_RANK'] == 1) & (customMetrics['pMAE_RANK'] == 1), 'champion'] = 1\n\n    if customMetrics['champion'].sum() != 1:\n        customMetrics['champion'] = 0\n        customMetrics.loc[customMetrics['pMAE_RANK'] == 1, 'champion'] = 1\n\n    keepindex = customMetrics['champion'].eq(1).idxmax()\n\n    # create champion_method_test tables in same dataset\n    query = f\"\"\"\n        CREATE OR REPLACE TABLE `{bq_champion_test}` AS\n        SELECT *\n        FROM `{bq_test}`\n        WHERE\n            platform = '{customMetrics['platform'][keepindex]}' AND\n            method = '{customMetrics['method'][keepindex]}' AND\n            scenario = '{customMetrics['scenario'][keepindex]}'\n        ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # create champion_*_horizon tables in same dataset - an extension of the metric SQL above to create the table\n    query = f\"\"\"\n        CREATE OR REPLACE TABLE `{bq_champion_horizon}` AS\n        SELECT *\n        FROM `{bq_horizon}`\n        WHERE\n            platform = '{customMetrics['platform'][keepindex]}' AND\n            method = '{customMetrics['method'][keepindex]}' AND\n            scenario = '{customMetrics['scenario'][keepindex]}'\n        ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # create champion_* table in the same dataset - combine the input+test+horizon for reporting\n    # combine the input data (.forecast_input_pipeline) with the test data fitted (.champion_series|overall_test) and the future horizon (.champion_sereis|overall_horizon)\n    query = f\"\"\"\n    CREATE OR REPLACE TABLE `{bq_champion}` AS\n    WITH\n        RAW_AND_TEST AS (\n            SELECT * FROM `{bq_input}`\n            LEFT OUTER JOIN `{bq_champion_test}`\n            USING ({series_column}, {time_column}, {target_column})\n        ),\n        HORIZON AS (\n            SELECT 'HORIZON' AS splits, * EXCEPT({target_column}) FROM `{bq_champion_horizon}`\n        ),\n        HORIZON_NEW AS (\n            SELECT * FROM HORIZON \n            LEFT OUTER JOIN `{bq_horizon}_input`\n            USING ({series_column}, {time_column})\n        ),\n        RTH AS (\n            SELECT splits,\n                {','.join([series_column, time_column, target_column]+cov_unavailable+cov_available+cov_attribute)},\n                platform, method, scenario,\n                yhat, yhat_lower, yhat_upper\n            FROM RAW_AND_TEST\n            UNION ALL\n            SELECT splits,\n                {','.join([series_column, time_column, target_column]+cov_unavailable+cov_available+cov_attribute)},\n                platform, method, scenario,\n                yhat, yhat_lower, yhat_upper\n            FROM HORIZON_NEW\n        )\n    SELECT *\n    FROM RTH\n    ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # log metric artifacts\n    metrics.log_metric('MAPE', customMetrics['MAPE'][keepindex])\n    metrics.log_metric('MAE', customMetrics['MAE'][keepindex])\n    metrics.log_metric('pMAE', customMetrics['pMAE'][keepindex])\n    metrics.log_metric('methods', customMetrics.shape[0])\n    metrics.log_metric('MAPE_RANK', customMetrics['MAPE_RANK'][keepindex])\n    metrics.log_metric('MAE_RANK', customMetrics['MAE_RANK'][keepindex])\n    metrics.log_metric('pMAE_RANK', customMetrics['pMAE_RANK'][keepindex])\n\n    return sources(bq_champion_test, bq_champion_horizon, customMetrics['platform'][keepindex] , customMetrics['method'][keepindex], customMetrics['scenario'][keepindex], customMetrics['MAPE'][keepindex], customMetrics['MAE'][keepindex], customMetrics['pMAE'][keepindex])\n\n"
+            ],
+            "image": "python:3.9"
+          }
+        },
+        "exec-forecast-champion-method-series": {
+          "container": {
+            "args": [
+              "--executor_input",
+              "{{$}}",
+              "--function_to_execute",
+              "forecast_champion_method_series"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'pandas' 'db-dtypes' 'google-cloud-bigquery' 'pretty_html_table' 'kfp==1.8.12' && \"$0\" \"$@\"\n",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp -d)\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\npython3 -m kfp.v2.components.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+              "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing import *\n\ndef forecast_champion_method_series(\n    project: str,\n    bq_input: str,\n    bq_test: str,\n    bq_horizon: str,\n    target_column: str,\n    time_column: str,\n    series_column: str,\n    cov_unavailable: list,\n    cov_available: list,\n    cov_attribute: list,\n    metrics: dsl.Output[dsl.HTML]\n) -> NamedTuple('sources', [('bq_champion_test', str), ('bq_champion_horizon', str)]):\n\n    # Setup\n    from collections import namedtuple\n    sources = namedtuple('sources', ['bq_champion_test', 'bq_champion_horizon'])\n\n    from google.cloud import bigquery\n    bigquery = bigquery.Client(project = project)\n\n    from pretty_html_table import build_table\n\n    # parameter\n    table = bq_test.split('.')[-1]\n    bq_champion = f\"{bq_test[:-(len(table)+1)]}.champion_series\"\n    bq_champion_test = bq_champion + \"_test\"\n    bq_champion_horizon = bq_champion + \"_horizon\"\n\n    # metrics\n    metricQuery = f\"\"\"\n        WITH\n            FORECASTS AS (\n                SELECT\n                    platform, method, scenario,\n                    {time_column}, \n                    {target_column},\n                    {series_column}, \n                    yhat,\n                    ({target_column} - yhat) as diff\n                FROM `{bq_test}`\n            ),\n            SOURCE AS (\n                SELECT {series_column}, {time_column}\n                FROM `{bq_input}`\n                WHERE ROW_SOURCE = 'actual'\n            ),\n            ACTUALS AS (\n                SELECT *\n                FROM FORECASTS A\n                INNER JOIN SOURCE B\n                USING ({series_column}, {time_column})\n            ),\n            METRICS AS (\n                SELECT\n                    {series_column}, platform, method, scenario,\n                    AVG(ABS(diff)/{target_column}) as MAPE,\n                    AVG(ABS(diff)) as MAE,\n                    SUM(ABS(diff))/SUM({target_column}) as pMAE\n                FROM ACTUALS\n                GROUP BY {series_column}, platform, method, scenario\n            ),\n            RANKS AS (\n                SELECT *,\n                    RANK() OVER (PARTITION BY {series_column} ORDER BY MAPE) as MAPE_RANK,\n                    RANK() OVER (PARTITION BY {series_column} ORDER BY MAE) as MAE_RANK,\n                    RANK() OVER (PARTITION BY {series_column} ORDER BY pMAE) as pMAE_RANK\n                FROM METRICS\n            ),\n            CRITERIA AS (\n                SELECT *,\n                    CASE WHEN (MAE_RANK = 1 AND pMAE_RANK = 1) THEN 1 ELSE 0 END AS CHAMPION_1,\n                    CASE WHEN (MAPE_RANK = 1 AND pMAE_RANK = 1) THEN 1 ELSE 0 END AS CHAMPION_2,\n                    CASE WHEN (pMAE_RANK = 1) THEN 1 ELSE 0 END AS CHAMPION_3\n                FROM RANKS        \n            ),\n            RULES AS (\n                SELECT\n                    {series_column},\n                    CASE\n                        WHEN SUM(CHAMPION_1) = 1 THEN 1\n                        WHEN SUM(CHAMPION_2) = 1 THEN 2\n                        ELSE 3\n                    END AS CHAMPION\n                FROM CRITERIA\n                GROUP BY {series_column}\n            ),\n            CHAMPION AS (\n                SELECT A.* EXCEPT(CHAMPION_1, CHAMPION_2, CHAMPION_3)\n                FROM CRITERIA A\n                JOIN RULES B\n                ON A.{series_column} = B.{series_column}\n                    AND ((A.CHAMPION_1 = 1 and B.CHAMPION = 1) OR (A.CHAMPION_2 = 1 and B.CHAMPION = 2) OR (A.CHAMPION_3 = 1 and B.CHAMPION = 3))\n            )\n    \"\"\"\n\n    query = f\"\"\"\n{metricQuery}\n        SELECT *\n        FROM CHAMPION\n        ORDER BY {series_column}\n    \"\"\"\n    customMetrics = bigquery.query(query = query).to_dataframe() \n\n    # create champion_*_test tables in same dataset - an extension of the metric SQL above to create the table\n    query = f\"\"\"\n        CREATE OR REPLACE TABLE `{bq_champion_test}` AS\n{metricQuery}\n            SELECT *\n            FROM (SELECT {series_column}, platform, method, scenario FROM CHAMPION) A\n            LEFT OUTER JOIN (SELECT * FROM `{bq_test}`) B\n            USING ({series_column}, platform, method, scenario)\n            ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # create champion_*_horizon tables in same dataset - an extension of the metric SQL above to create the table\n    query = f\"\"\"\n        CREATE OR REPLACE TABLE `{bq_champion_horizon}` AS\n{metricQuery}\n            SELECT *\n            FROM (SELECT {series_column}, platform, method, scenario FROM CHAMPION) A\n            LEFT OUTER JOIN (SELECT * FROM `{bq_horizon}`) B\n            USING ({series_column}, platform, method, scenario)\n            ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()    \n\n    # create champion_* table in the same dataset - combine the input+test+horizon for reporting\n    # combine the input data (.forecast_input_pipeline) with the test data fitted (.champion_series|overall_test) and the future horizon (.champion_sereis|overall_horizon)\n    query = f\"\"\"\n    CREATE OR REPLACE TABLE `{bq_champion}` AS\n    WITH\n        RAW_AND_TEST AS (\n            SELECT * FROM `{bq_input}`\n            LEFT OUTER JOIN `{bq_champion_test}`\n            USING ({series_column}, {time_column}, {target_column})\n        ),\n        HORIZON AS (\n            SELECT 'HORIZON' AS splits, * EXCEPT({target_column}) FROM `{bq_champion_horizon}`\n        ),\n        HORIZON_NEW AS (\n            SELECT * FROM HORIZON \n            LEFT OUTER JOIN `{bq_horizon}_input`\n            USING ({series_column}, {time_column})\n        ),\n        RTH AS (\n            SELECT splits,\n                {','.join([series_column, time_column, target_column]+cov_unavailable+cov_available+cov_attribute)},\n                platform, method, scenario,\n                yhat, yhat_lower, yhat_upper\n            FROM RAW_AND_TEST\n            UNION ALL\n            SELECT splits,\n                {','.join([series_column, time_column, target_column]+cov_unavailable+cov_available+cov_attribute)},\n                platform, method, scenario,\n                yhat, yhat_lower, yhat_upper\n            FROM HORIZON_NEW\n        )\n    SELECT *\n    FROM RTH\n    ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # log metric artifacts as html\n    with open(metrics.path, 'w') as f:\n        #f.write(customMetrics.to_html(index = False))\n        f.write(build_table(customMetrics, 'blue_light'))\n\n    return sources(bq_champion_test, bq_champion_horizon)\n\n"
+            ],
+            "image": "python:3.9"
+          }
+        },
+        "exec-forecast-metrics": {
+          "container": {
+            "args": [
+              "--executor_input",
+              "{{$}}",
+              "--function_to_execute",
+              "forecast_metrics"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'pandas' 'db-dtypes' 'google-cloud-bigquery' 'kfp==1.8.12' && \"$0\" \"$@\"\n",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp -d)\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\npython3 -m kfp.v2.components.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+              "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing import *\n\ndef forecast_metrics(\n    project: str,\n    bq_input: str,\n    bq_test: str,\n    platform: str,\n    method: str,\n    scenario: str,\n    target_column: str,\n    time_column: str,\n    series_column: str,\n    cov_unavailable: list,\n    cov_available: list,\n    cov_attribute: list,\n    metrics: dsl.Output[dsl.Metrics]\n) -> NamedTuple('metrics', [('MAPE', float), ('MAE', float), ('pMAE', float)]):\n\n    # Setup\n    from collections import namedtuple\n    sources = namedtuple('metrics', ['MAPE', 'MAE', 'pMAE'])\n\n    from google.cloud import bigquery\n    bigquery = bigquery.Client(project = project)\n\n    # metrics\n    query = f\"\"\"\n        WITH\n            FORECASTS AS (\n                SELECT\n                    platform, method, scenario,\n                    {time_column}, \n                    {target_column},\n                    {series_column}, \n                    yhat,\n                    ({target_column} - yhat) as diff\n                FROM `{bq_test}`\n                WHERE platform = '{platform}' and method = '{method}' and scenario = '{scenario}'\n            ),\n            # Get the dates of actual entries - omit the ones inserted into place of missing ones\n            SOURCE AS (\n                SELECT {series_column}, {time_column}\n                FROM `{bq_input}`\n                WHERE ROW_SOURCE = 'actual'\n            ),\n            # shrink FORECAST to just the actual measurements\n            ACTUALS AS (\n                SELECT *\n                FROM FORECASTS A\n                INNER JOIN SOURCE B\n                USING ({series_column}, {time_column})\n            )\n        SELECT\n            AVG(ABS(diff)/{target_column}) as MAPE,\n            AVG(ABS(diff)) as MAE,\n            SUM(ABS(diff))/SUM({target_column}) as pMAE\n        FROM ACTUALS\n    \"\"\"\n    customMetrics = bigquery.query(query = query).to_dataframe()\n    metrics.log_metric('MAPE', customMetrics['MAPE'][0])\n    metrics.log_metric('MAE', customMetrics['MAE'][0])\n    metrics.log_metric('pMAE', customMetrics['pMAE'][0])\n\n    return sources(customMetrics['MAPE'][0], customMetrics['MAE'][0], customMetrics['pMAE'][0])\n\n"
+            ],
+            "image": "python:3.9"
+          }
+        },
+        "exec-forecast-metrics-2": {
+          "container": {
+            "args": [
+              "--executor_input",
+              "{{$}}",
+              "--function_to_execute",
+              "forecast_metrics"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'pandas' 'db-dtypes' 'google-cloud-bigquery' 'kfp==1.8.12' && \"$0\" \"$@\"\n",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp -d)\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\npython3 -m kfp.v2.components.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+              "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing import *\n\ndef forecast_metrics(\n    project: str,\n    bq_input: str,\n    bq_test: str,\n    platform: str,\n    method: str,\n    scenario: str,\n    target_column: str,\n    time_column: str,\n    series_column: str,\n    cov_unavailable: list,\n    cov_available: list,\n    cov_attribute: list,\n    metrics: dsl.Output[dsl.Metrics]\n) -> NamedTuple('metrics', [('MAPE', float), ('MAE', float), ('pMAE', float)]):\n\n    # Setup\n    from collections import namedtuple\n    sources = namedtuple('metrics', ['MAPE', 'MAE', 'pMAE'])\n\n    from google.cloud import bigquery\n    bigquery = bigquery.Client(project = project)\n\n    # metrics\n    query = f\"\"\"\n        WITH\n            FORECASTS AS (\n                SELECT\n                    platform, method, scenario,\n                    {time_column}, \n                    {target_column},\n                    {series_column}, \n                    yhat,\n                    ({target_column} - yhat) as diff\n                FROM `{bq_test}`\n                WHERE platform = '{platform}' and method = '{method}' and scenario = '{scenario}'\n            ),\n            # Get the dates of actual entries - omit the ones inserted into place of missing ones\n            SOURCE AS (\n                SELECT {series_column}, {time_column}\n                FROM `{bq_input}`\n                WHERE ROW_SOURCE = 'actual'\n            ),\n            # shrink FORECAST to just the actual measurements\n            ACTUALS AS (\n                SELECT *\n                FROM FORECASTS A\n                INNER JOIN SOURCE B\n                USING ({series_column}, {time_column})\n            )\n        SELECT\n            AVG(ABS(diff)/{target_column}) as MAPE,\n            AVG(ABS(diff)) as MAE,\n            SUM(ABS(diff))/SUM({target_column}) as pMAE\n        FROM ACTUALS\n    \"\"\"\n    customMetrics = bigquery.query(query = query).to_dataframe()\n    metrics.log_metric('MAPE', customMetrics['MAPE'][0])\n    metrics.log_metric('MAE', customMetrics['MAE'][0])\n    metrics.log_metric('pMAE', customMetrics['pMAE'][0])\n\n    return sources(customMetrics['MAPE'][0], customMetrics['MAE'][0], customMetrics['pMAE'][0])\n\n"
+            ],
+            "image": "python:3.9"
+          }
+        },
+        "exec-forecast-prep": {
+          "container": {
+            "args": [
+              "--executor_input",
+              "{{$}}",
+              "--function_to_execute",
+              "forecast_prep"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'pandas' 'pyarrow' 'google-cloud-bigquery' 'google-cloud-aiplatform' 'kfp==1.8.12' && \"$0\" \"$@\"\n",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp -d)\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\npython3 -m kfp.v2.components.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+              "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing import *\n\ndef forecast_prep(\n    project: str,\n    region: str,\n    notebook: str,\n    bq_source: str,\n    bq_dataset: str,\n    forecast_granularity: str,\n    forecast_test_length: int,\n    forecast_val_length: int,\n    forecast_horizon_length: int,\n    max_context_window: int,\n    target_column: str,\n    time_column: str,\n    series_column: str,\n    cov_unavailable: list,\n    cov_available: list,\n    cov_attribute: list\n) -> NamedTuple('source', [('bq_input', str), ('bq_test', str), ('bq_horizon', str), ('bq_horizon_input', str), ('bq_input_query', str), ('dataset_resource_name', str)]):\n\n    # Setup\n    from collections import namedtuple\n    sources = namedtuple('source', ['bq_input', 'bq_test', 'bq_horizon', 'bq_horizon_input', 'bq_input_query', 'dataset_resource_name'])\n\n    from google.cloud import bigquery\n    bigquery = bigquery.Client(project = project)\n\n    from google.cloud import aiplatform\n    aiplatform.init(project=project, location=region)\n\n    # parameters\n    bq_input = f'{project}.{bq_dataset}.forecast_input_pipeline'\n    bq_test = f'{project}.{bq_dataset}.forecast_test'\n    bq_horizon = f'{project}.{bq_dataset}.forecast_horizon'\n    bq_horizon_input = f'{project}.{bq_dataset}.forecast_horizon_input'\n\n    # Prepare forecast input\n    queryTable = f\"\"\"\n        CREATE OR REPLACE TABLE `{bq_input}` AS\n        WITH\n            FORECAST AS (\n                SELECT {', '.join(cov_unavailable+cov_available+cov_attribute+[target_column, time_column, series_column])}, ROW_SOURCE\n                FROM `{bq_source}`\n            )\n        SELECT *,\n           CASE\n               WHEN {time_column} > DATE_SUB((SELECT MAX({time_column}) FROM `{bq_source}`), INTERVAL {forecast_test_length} {forecast_granularity}) THEN \"TEST\"\n               WHEN {time_column} > DATE_SUB((SELECT MAX({time_column}) FROM `{bq_source}`), INTERVAL {forecast_test_length}+{forecast_val_length} {forecast_granularity}) THEN \"VALIDATE\"\n               ELSE \"TRAIN\"\n           END AS splits\n        FROM FORECAST\n        ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = queryTable)\n    job.result()\n\n    # Prepare Common Output Table for Test Data Fitted\n    queryOutputTest = f\"\"\"\n        CREATE OR REPLACE TABLE `{bq_test}`\n        (platform STRING, method STRING, scenario STRING, {series_column} STRING, {time_column} DATE, {target_column} INT64, yhat FLOAT64, yhat_lower FLOAT64, yhat_upper FLOAT64)\n    \"\"\"\n    job = bigquery.query(query = queryOutputTest)\n    job.result()\n\n    # create Vertex AI Dataset linking to bqtable\n    dataset = aiplatform.TimeSeriesDataset.create(\n        display_name = f'{bq_dataset}', \n        bq_source = f'bq://{bq_input}',\n        labels = {'notebook':f'{notebook}'}\n    )\n\n    # Prepare Common Output Table For Future Data Forecasted\n    queryOutputHorizon = f\"\"\"\n        CREATE OR REPLACE TABLE `{bq_horizon}`\n        (platform STRING, method STRING, scenario STRING, {series_column} STRING, {time_column} DATE, {target_column} INT64, yhat FLOAT64, yhat_lower FLOAT64, yhat_upper FLOAT64)\n    \"\"\"\n    job = bigquery.query(query = queryOutputHorizon)\n    job.result()\n\n    # Prepare horizon table for forecasting (batch jobs for automl models) - includes max context_window (history from before the horizon)\n    query_a = \"\"\n    query_b = \"\"\n    for v in cov_unavailable+cov_available+cov_attribute:\n        query_a += f\"\"\",\n                LAST_VALUE({v} IGNORE NULLS) OVER (PARTITION BY {series_column} ORDER BY {time_column} ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as {v}\"\"\"\n        if v not in cov_attribute:\n            query_b += f\"\"\",\n            CASE WHEN {time_column} > (SELECT MAX({time_column}) FROM `{bq_input}`) THEN NULL ELSE {v} END AS {v}\"\"\"\n        else:\n            query_b += f\"\"\",\n            {v}\"\"\"\n    query = f\"\"\"\n    CREATE OR REPLACE TABLE `{bq_horizon_input}` AS\n    WITH\n        DATELIST AS (\n            SELECT *\n            FROM (SELECT DISTINCT {series_column} FROM `{bq_input}`) A\n            CROSS JOIN (SELECT {time_column}\n                        FROM UNNEST(GENERATE_DATE_ARRAY(\n                                        DATE_SUB((SELECT MAX({time_column}) FROM `{bq_input}`), INTERVAL {max_context_window-1} {forecast_granularity}),\n                                        DATE_ADD((SELECT MAX({time_column}) FROM `{bq_input}`), INTERVAL {forecast_horizon_length} {forecast_granularity}),\n                                        INTERVAL 1 {forecast_granularity}\n                                    )\n                                ) AS {time_column}\n                        ) B\n        ),\n        ADDTARGET AS (\n            SELECT *\n            FROM DATELIST\n            LEFT OUTER JOIN (SELECT * FROM `{bq_input}`)\n            USING ({series_column}, {time_column})\n            ORDER BY {series_column}, {time_column}\n        ),\n        LOCF AS (\n            SELECT {series_column}, {time_column},\n            LAST_VALUE({target_column} IGNORE NULLS) OVER (PARTITION BY {series_column} ORDER BY {time_column} ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as {target_column}{query_a}\n            FROM ADDTARGET\n        )\n    SELECT {series_column}, {time_column},\n        CASE WHEN {time_column} > (SELECT MAX({time_column}) FROM `{bq_input}`) THEN NULL ELSE {target_column} END AS {target_column}{query_b}\n    FROM LOCF\n    ORDER BY {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    return sources(bq_input, bq_test, bq_horizon, bq_horizon_input, queryTable, dataset.resource_name)\n\n"
+            ],
+            "image": "python:3.9"
+          }
+        },
+        "exec-forecast-prophet": {
+          "container": {
+            "args": [
+              "--executor_input",
+              "{{$}}",
+              "--function_to_execute",
+              "forecast_prophet"
+            ],
+            "command": [
+              "sh",
+              "-c",
+              "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet     --no-warn-script-location 'google-cloud-bigquery' 'google-cloud-aiplatform' 'kfp==1.8.12' && \"$0\" \"$@\"\n",
+              "sh",
+              "-ec",
+              "program_path=$(mktemp -d)\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\npython3 -m kfp.v2.components.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+              "\nimport kfp\nfrom kfp.v2 import dsl\nfrom kfp.v2.dsl import *\nfrom typing import *\n\ndef forecast_prophet(\n    project: str,\n    region: str,\n    notebook: str,\n    bq_input: str,\n    bq_test: str,\n    bq_horizon: str,\n    service_account: str,\n    image_uri: str,\n    yearly: str, # flag for prophet to add seasonality for yearly\n    forecast_test_length: int,\n    forecast_horizon_length: int, # forecast horizon\n    target_column: str,\n    time_column: str,\n    series_column: str,\n    cov_unavailable: list,\n    cov_available: list,\n    cov_attribute: list\n) -> NamedTuple('source', [('bq_output', str), ('model', str), ('platform', str), ('method', str), ('scenario', str)]):\n\n    # Setup\n    from collections import namedtuple\n    sources = namedtuple('source', ['bq_output', 'model', 'platform', 'method', 'scenario'])\n\n    from google.cloud import bigquery\n    bigquery = bigquery.Client(project = project)\n\n    from google.cloud import aiplatform\n    aiplatform.init(project=project, location=region)\n\n    # parameters\n    platform = 'Vertex AI' \n    method = 'Prophet Container'\n    if yearly == 'true': scenario = '--yearly'\n    else: scenario = '--no-yearly'\n\n    table = bq_test.split('.')[-1]\n    bq_dataset = bq_test.split('.')[1]\n    bq_output = f\"{bq_test[:-(len(table)+1)]}.fitted_forecast_prophet_{scenario}\"\n    URI = f\"gs://{project}/{bq_dataset}/models/{notebook}\"\n\n    # create job\n    CMDARGS = [\n        \"--project=\" + project,\n        \"--bq_input=\" + bq_input,\n        \"--bq_output=\" + bq_output,\n        \"--horizon=\" + f'{forecast_horizon_length+forecast_test_length}',\n        \"--target_column=\" + target_column,\n        \"--series_column=\" + series_column,\n        \"--time_column=\" + time_column,\n        \"--cov_unavailable=\" + \" \".join(cov_unavailable),\n        \"--cov_available=\" + \" \".join(cov_available),\n        \"--cov_attribute=\" + \" \".join(cov_attribute),\n        f\"{scenario}\"\n    ]\n\n    MACHINE_SPEC = {\n        \"machine_type\": 'n1-standard-8',\n        \"accelerator_count\": 0\n    }\n\n    WORKER_POOL_SPEC = [\n        {\n            \"replica_count\": 1,\n            \"machine_spec\": MACHINE_SPEC,\n            \"container_spec\": {\n                \"image_uri\": image_uri,\n                \"command\": [],\n                \"args\": CMDARGS\n            }\n        }\n    ]\n\n    customJob = aiplatform.CustomJob(\n        display_name = f'{bq_dataset}_prophet_{scenario}',\n        worker_pool_specs = WORKER_POOL_SPEC,\n        base_output_dir = f\"{URI}/{scenario}\",\n        staging_bucket = f\"{URI}/{scenario}\",\n        labels = {'notebook':f'{notebook}', 'yearly':f'{scenario}'}\n    )\n\n    # run job\n    customJob.run(\n        service_account = service_account\n    )\n\n    # Insert Output for Tournament (first remove prior run if present)\n    query = f\"\"\"\n        DELETE `{bq_test}`\n        WHERE platform = '{platform}' and method = '{method}' and scenario = '{scenario}'\n    \"\"\"\n    job = bigquery.query(query)\n    job.result()\n\n    query = f\"\"\"\n        INSERT INTO `{bq_test}`\n        SELECT\n            '{platform}' as platform,\n            '{method}' as method,\n            '{scenario}' as scenario,\n            {series_column},\n            {time_column},\n            {target_column},\n            yhat,\n            yhat_lower,\n            yhat_upper\n        FROM `{bq_output}`\n        WHERE splits = 'TEST'\n        ORDER by {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()\n\n    # Insert forecast for future horizon\n    query = f\"\"\"\n        DELETE `{bq_horizon}`\n        WHERE platform = '{platform}' and method = '{method}' and scenario = '{scenario}'\n    \"\"\"\n    job = bigquery.query(query)\n    job.result()\n\n    query = f\"\"\"\n        INSERT INTO `{bq_horizon}`\n        SELECT\n            '{platform}' as platform,\n            '{method}' as method,\n            '{scenario}' as scenario,\n            {series_column},\n            {time_column},\n            {target_column},\n            yhat,\n            yhat_lower,\n            yhat_upper\n        FROM `{bq_output}`\n        WHERE splits is NULL\n        ORDER by {series_column}, {time_column}\n    \"\"\"\n    job = bigquery.query(query = query)\n    job.result()    \n\n    return sources(f'{bq_output}', customJob.resource_name, platform, method, scenario)\n\n"
+            ],
+            "image": "python:3.9"
+          }
+        }
+      }
+    },
+    "pipelineInfo": {
+      "name": "kfp-forecastpipeline-tournament"
+    },
+    "root": {
+      "dag": {
+        "outputs": {
+          "artifacts": {
+            "forecast-champion-method-metrics": {
+              "artifactSelectors": [
+                {
+                  "outputArtifactKey": "metrics",
+                  "producerSubtask": "forecast-champion-method"
+                }
+              ]
+            },
+            "forecast-metrics-2-metrics": {
+              "artifactSelectors": [
+                {
+                  "outputArtifactKey": "forecast-metrics-2-metrics",
+                  "producerSubtask": "for-loop-2"
+                }
+              ]
+            },
+            "forecast-metrics-metrics": {
+              "artifactSelectors": [
+                {
+                  "outputArtifactKey": "metrics",
+                  "producerSubtask": "forecast-metrics"
+                }
+              ]
+            }
+          }
+        },
+        "tasks": {
+          "for-loop-2": {
+            "componentRef": {
+              "name": "comp-for-loop-2"
+            },
+            "dependentTasks": [
+              "forecast-prep"
+            ],
+            "inputs": {
+              "parameters": {
+                "pipelineparam--cov_attribute": {
+                  "componentInputParameter": "cov_attribute"
+                },
+                "pipelineparam--cov_available": {
+                  "componentInputParameter": "cov_available"
+                },
+                "pipelineparam--cov_unavailable": {
+                  "componentInputParameter": "cov_unavailable"
+                },
+                "pipelineparam--forecast-prep-bq_horizon": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_horizon",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "pipelineparam--forecast-prep-bq_input": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_input",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "pipelineparam--forecast-prep-bq_test": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_test",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "pipelineparam--forecast_horizon_length": {
+                  "componentInputParameter": "forecast_horizon_length"
+                },
+                "pipelineparam--forecast_test_length": {
+                  "componentInputParameter": "forecast_test_length"
+                },
+                "pipelineparam--image_uri": {
+                  "componentInputParameter": "image_uri"
+                },
+                "pipelineparam--notebook": {
+                  "componentInputParameter": "notebook"
+                },
+                "pipelineparam--project": {
+                  "componentInputParameter": "project"
+                },
+                "pipelineparam--region": {
+                  "componentInputParameter": "region"
+                },
+                "pipelineparam--series_column": {
+                  "componentInputParameter": "series_column"
+                },
+                "pipelineparam--service_account": {
+                  "componentInputParameter": "service_account"
+                },
+                "pipelineparam--target_column": {
+                  "componentInputParameter": "target_column"
+                },
+                "pipelineparam--time_column": {
+                  "componentInputParameter": "time_column"
+                }
+              }
+            },
+            "parameterIterator": {
+              "itemInput": "pipelineparam--loop-item-param-1",
+              "items": {
+                "raw": "[\"true\", \"false\"]"
+              }
+            },
+            "taskInfo": {
+              "name": "for-loop-2"
+            }
+          },
+          "forecast-bqarima": {
+            "cachingOptions": {},
+            "componentRef": {
+              "name": "comp-forecast-bqarima"
+            },
+            "dependentTasks": [
+              "forecast-prep"
+            ],
+            "inputs": {
+              "parameters": {
+                "bq_horizon": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_horizon",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_input": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_input",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_test": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_test",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "forecast_horizon_length": {
+                  "componentInputParameter": "forecast_horizon_length"
+                },
+                "forecast_test_length": {
+                  "componentInputParameter": "forecast_test_length"
+                },
+                "project": {
+                  "componentInputParameter": "project"
+                },
+                "series_column": {
+                  "componentInputParameter": "series_column"
+                },
+                "target_column": {
+                  "componentInputParameter": "target_column"
+                },
+                "time_column": {
+                  "componentInputParameter": "time_column"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "forecast-bqarima"
+            }
+          },
+          "forecast-champion-ensemble": {
+            "cachingOptions": {},
+            "componentRef": {
+              "name": "comp-forecast-champion-ensemble"
+            },
+            "dependentTasks": [
+              "for-loop-2",
+              "forecast-metrics",
+              "forecast-prep"
+            ],
+            "inputs": {
+              "parameters": {
+                "bq_dataset": {
+                  "componentInputParameter": "bq_dataset"
+                },
+                "bq_horizon": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_horizon",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_input": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_input",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_test": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_test",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "cov_attribute": {
+                  "componentInputParameter": "cov_attribute"
+                },
+                "cov_available": {
+                  "componentInputParameter": "cov_available"
+                },
+                "cov_unavailable": {
+                  "componentInputParameter": "cov_unavailable"
+                },
+                "project": {
+                  "componentInputParameter": "project"
+                },
+                "region": {
+                  "componentInputParameter": "region"
+                },
+                "series_column": {
+                  "componentInputParameter": "series_column"
+                },
+                "target_column": {
+                  "componentInputParameter": "target_column"
+                },
+                "time_column": {
+                  "componentInputParameter": "time_column"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "forecast-champion-ensemble"
+            }
+          },
+          "forecast-champion-method": {
+            "cachingOptions": {},
+            "componentRef": {
+              "name": "comp-forecast-champion-method"
+            },
+            "dependentTasks": [
+              "for-loop-2",
+              "forecast-metrics",
+              "forecast-prep"
+            ],
+            "inputs": {
+              "parameters": {
+                "bq_horizon": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_horizon",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_input": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_input",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_test": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_test",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "cov_attribute": {
+                  "componentInputParameter": "cov_attribute"
+                },
+                "cov_available": {
+                  "componentInputParameter": "cov_available"
+                },
+                "cov_unavailable": {
+                  "componentInputParameter": "cov_unavailable"
+                },
+                "project": {
+                  "componentInputParameter": "project"
+                },
+                "series_column": {
+                  "componentInputParameter": "series_column"
+                },
+                "target_column": {
+                  "componentInputParameter": "target_column"
+                },
+                "time_column": {
+                  "componentInputParameter": "time_column"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "forecast-champion-method"
+            }
+          },
+          "forecast-champion-method-series": {
+            "cachingOptions": {},
+            "componentRef": {
+              "name": "comp-forecast-champion-method-series"
+            },
+            "dependentTasks": [
+              "for-loop-2",
+              "forecast-metrics",
+              "forecast-prep"
+            ],
+            "inputs": {
+              "parameters": {
+                "bq_horizon": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_horizon",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_input": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_input",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_test": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_test",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "cov_attribute": {
+                  "componentInputParameter": "cov_attribute"
+                },
+                "cov_available": {
+                  "componentInputParameter": "cov_available"
+                },
+                "cov_unavailable": {
+                  "componentInputParameter": "cov_unavailable"
+                },
+                "project": {
+                  "componentInputParameter": "project"
+                },
+                "series_column": {
+                  "componentInputParameter": "series_column"
+                },
+                "target_column": {
+                  "componentInputParameter": "target_column"
+                },
+                "time_column": {
+                  "componentInputParameter": "time_column"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "forecast-champion-method-series"
+            }
+          },
+          "forecast-metrics": {
+            "cachingOptions": {},
+            "componentRef": {
+              "name": "comp-forecast-metrics"
+            },
+            "dependentTasks": [
+              "forecast-bqarima",
+              "forecast-prep"
+            ],
+            "inputs": {
+              "parameters": {
+                "bq_input": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_input",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "bq_test": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "bq_test",
+                    "producerTask": "forecast-prep"
+                  }
+                },
+                "cov_attribute": {
+                  "componentInputParameter": "cov_attribute"
+                },
+                "cov_available": {
+                  "componentInputParameter": "cov_available"
+                },
+                "cov_unavailable": {
+                  "componentInputParameter": "cov_unavailable"
+                },
+                "method": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "method",
+                    "producerTask": "forecast-bqarima"
+                  }
+                },
+                "platform": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "platform",
+                    "producerTask": "forecast-bqarima"
+                  }
+                },
+                "project": {
+                  "componentInputParameter": "project"
+                },
+                "scenario": {
+                  "taskOutputParameter": {
+                    "outputParameterKey": "scenario",
+                    "producerTask": "forecast-bqarima"
+                  }
+                },
+                "series_column": {
+                  "componentInputParameter": "series_column"
+                },
+                "target_column": {
+                  "componentInputParameter": "target_column"
+                },
+                "time_column": {
+                  "componentInputParameter": "time_column"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "forecast-metrics"
+            }
+          },
+          "forecast-prep": {
+            "cachingOptions": {},
+            "componentRef": {
+              "name": "comp-forecast-prep"
+            },
+            "inputs": {
+              "parameters": {
+                "bq_dataset": {
+                  "componentInputParameter": "bq_dataset"
+                },
+                "bq_source": {
+                  "componentInputParameter": "bq_source"
+                },
+                "cov_attribute": {
+                  "componentInputParameter": "cov_attribute"
+                },
+                "cov_available": {
+                  "componentInputParameter": "cov_available"
+                },
+                "cov_unavailable": {
+                  "componentInputParameter": "cov_unavailable"
+                },
+                "forecast_granularity": {
+                  "componentInputParameter": "forecast_granularity"
+                },
+                "forecast_horizon_length": {
+                  "componentInputParameter": "forecast_horizon_length"
+                },
+                "forecast_test_length": {
+                  "componentInputParameter": "forecast_test_length"
+                },
+                "forecast_val_length": {
+                  "componentInputParameter": "forecast_val_length"
+                },
+                "max_context_window": {
+                  "componentInputParameter": "max_context_window"
+                },
+                "notebook": {
+                  "componentInputParameter": "notebook"
+                },
+                "project": {
+                  "componentInputParameter": "project"
+                },
+                "region": {
+                  "componentInputParameter": "region"
+                },
+                "series_column": {
+                  "componentInputParameter": "series_column"
+                },
+                "target_column": {
+                  "componentInputParameter": "target_column"
+                },
+                "time_column": {
+                  "componentInputParameter": "time_column"
+                }
+              }
+            },
+            "taskInfo": {
+              "name": "forecast-prep"
+            }
+          }
+        }
+      },
+      "inputDefinitions": {
+        "parameters": {
+          "automl_max_time": {
+            "type": "INT"
+          },
+          "bq_dataset": {
+            "type": "STRING"
+          },
+          "bq_source": {
+            "type": "STRING"
+          },
+          "cov_attribute": {
+            "type": "STRING"
+          },
+          "cov_available": {
+            "type": "STRING"
+          },
+          "cov_unavailable": {
+            "type": "STRING"
+          },
+          "cwValues": {
+            "type": "STRING"
+          },
+          "forecast_granularity": {
+            "type": "STRING"
+          },
+          "forecast_granularity_count": {
+            "type": "INT"
+          },
+          "forecast_horizon_length": {
+            "type": "INT"
+          },
+          "forecast_test_length": {
+            "type": "INT"
+          },
+          "forecast_val_length": {
+            "type": "INT"
+          },
+          "image_uri": {
+            "type": "STRING"
+          },
+          "max_context_window": {
+            "type": "INT"
+          },
+          "notebook": {
+            "type": "STRING"
+          },
+          "project": {
+            "type": "STRING"
+          },
+          "region": {
+            "type": "STRING"
+          },
+          "series_column": {
+            "type": "STRING"
+          },
+          "service_account": {
+            "type": "STRING"
+          },
+          "target_column": {
+            "type": "STRING"
+          },
+          "time_column": {
+            "type": "STRING"
+          }
+        }
+      },
+      "outputDefinitions": {
+        "artifacts": {
+          "forecast-champion-method-metrics": {
+            "artifactType": {
+              "schemaTitle": "system.Metrics",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "forecast-metrics-2-metrics": {
+            "artifactType": {
+              "schemaTitle": "system.Metrics",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "forecast-metrics-metrics": {
+            "artifactType": {
+              "schemaTitle": "system.Metrics",
+              "schemaVersion": "0.0.1"
+            }
+          }
+        }
+      }
+    },
+    "schemaVersion": "2.0.0",
+    "sdkVersion": "kfp-1.8.12"
+  },
+  "runtimeConfig": {
+    "gcsOutputDirectory": "gs://mg-ce-demos/forecastpipeline/models/kfp/"
+  }
+}
